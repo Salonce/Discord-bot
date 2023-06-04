@@ -18,9 +18,6 @@ public class ResponseAttributes implements Response {
         if (message.getContent().equals(".attributes")) {
 
             Attributes attributes = userService.getUser(message.getId()).getAttributes();
-            Long charisma = userService.getUser(message.getId()).getAttributes().getCharisma();
-            Long endurance = userService.getUser(message.getId()).getAttributes().getEndurance();
-            Long userId = userService.getUser(message.getId()).getId();
 
             messageCreator.sendMessage("Endurance: " + attributes.getEndurance()
                     + "\nCharisma: " + attributes.getCharisma()
@@ -29,13 +26,5 @@ public class ResponseAttributes implements Response {
                     + "\nDexterity: " + attributes.getDexterity()
                     + "\nStrength: " + attributes.getStrength());
         }
-        /*
-                this.endurance = 1L;
-        this.intelligence = 1L;
-        this.wisdom = 1L;
-        this.strength = 1L;
-        this.dexterity = 1L;
-        this.charisma = 1L;
-         */
     }
 }

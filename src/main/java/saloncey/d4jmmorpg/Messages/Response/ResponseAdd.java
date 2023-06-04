@@ -21,6 +21,5 @@ public class ResponseAdd implements Response {
                     System.out.println("User added!");
                 //}
             }
-
         }
 }

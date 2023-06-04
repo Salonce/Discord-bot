@@ -21,9 +21,8 @@ public class ResponsePaint implements Response {
     @Transactional
     public void run(Message message, MessageCreator messageCreator){
         if (message.getContent().equals(".paint")) {
+            attributesService.getAttributes(message.getId()).increaseDexterity(1L);;
             messageCreator.sendMessage(paintingManager.getRandom().getString());
-            //attributesService.increaseDexterity(message.getId(), 1L);
-            //messageCreator.sendMessage("You've painted an old castle in a valley. You feel like a real painter now.");
         }
     }
 }

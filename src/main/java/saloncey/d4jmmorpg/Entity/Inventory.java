@@ -7,8 +7,19 @@ import jakarta.persistence.*;
 public class Inventory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Inventory(){};
+
+    public Inventory(Long id){
+        this.id = id;
+    };
 
     private Long itemA;
     private Long itemB;
@@ -27,5 +38,22 @@ public class Inventory {
 
     public void setItemB(Long itemB) {
         this.itemB = itemB;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

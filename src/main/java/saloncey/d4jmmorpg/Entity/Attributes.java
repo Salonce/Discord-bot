@@ -6,10 +6,23 @@ import jakarta.persistence.*;
 @Table(name="attributes")
 public class Attributes {
 
-    public Attributes(){};
+    public Attributes(){
+        this.endurance = 1L;
+        this.intelligence = 1L;
+        this.wisdom = 1L;
+        this.strength = 1L;
+        this.dexterity = 1L;
+        this.charisma = 1L;
+    };
 
     @Id
-    Long id;
+    @Column(name = "user_id")
+    private Long id;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -105,7 +118,11 @@ public class Attributes {
         this.charisma = this.charisma + number;
     };
 
-    @OneToOne(mappedBy = "attributes")
-    private User user;
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

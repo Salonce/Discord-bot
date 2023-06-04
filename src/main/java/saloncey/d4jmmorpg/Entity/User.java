@@ -6,20 +6,26 @@ import jakarta.persistence.*;
 @Table(name="users")
 public class User {
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Id
+    @Column(name = "id")
     private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Attributes attributes;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Inventory inventory;
+
+
 
     public Long getId() {
         return id;
     }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "attributes_id", referencedColumnName = "id")
-    private Attributes attributes;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Attributes getAttributes() {
         return attributes;
@@ -27,5 +33,13 @@ public class User {
 
     public void setAttributes(Attributes attributes) {
         this.attributes = attributes;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }

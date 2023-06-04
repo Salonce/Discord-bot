@@ -25,4 +25,8 @@ public class InventoryService {
         inventoryRepository.save(inventory);
 
     }
+
+    public boolean attributesExist(Long id){
+        return inventoryRepository.existsById(id);
+    }
 }
