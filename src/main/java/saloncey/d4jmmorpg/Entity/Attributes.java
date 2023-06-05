@@ -108,7 +108,7 @@ public class Attributes {
     public void increaseWisdom(Long number){
         this.wisdom = this.wisdom + number;
     };
-    public void increaseStrength(Long number){
+    public void increagseStrength(Long number){
         this.strength = this.strength + number;
     };
     public void increaseDexterity(Long number){

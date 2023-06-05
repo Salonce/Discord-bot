@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import saloncey.d4jmmorpg.Messages.MessageObserver;
 
+
 @SpringBootApplication
 public class D4jmmorpgApplication implements CommandLineRunner {
 	public static void main(String[] args) {
@@ -24,6 +25,7 @@ public class D4jmmorpgApplication implements CommandLineRunner {
 		final String token = args[0];
 		final DiscordClient client = DiscordClient.create(token);
 		final GatewayDiscordClient gateway = client.login().block();
+
 
 		gateway.on(MessageCreateEvent.class).subscribe(event -> {
 			messageObserver.setNewMessage(event.getMessage());
