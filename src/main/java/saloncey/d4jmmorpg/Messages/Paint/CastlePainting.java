@@ -1,4 +1,4 @@
-package saloncey.d4jmmorpg.Messages.Response.Paint;
+package saloncey.d4jmmorpg.Messages.Paint;
 
 import org.springframework.stereotype.Component;
 

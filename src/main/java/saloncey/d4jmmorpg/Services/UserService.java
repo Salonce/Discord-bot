@@ -4,21 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import saloncey.d4jmmorpg.Entity.Attributes;
-import saloncey.d4jmmorpg.Entity.Inventory;
+import saloncey.d4jmmorpg.Entity.Equipment;
 import saloncey.d4jmmorpg.Entity.User;
 import saloncey.d4jmmorpg.Repository.AttributesRepository;
-import saloncey.d4jmmorpg.Repository.InventoryRepository;
+import saloncey.d4jmmorpg.Repository.BelongingRepository;
+import saloncey.d4jmmorpg.Repository.EquipmentRepository;
 import saloncey.d4jmmorpg.Repository.UserRepository;
+
+import java.time.Duration;
+import java.time.Instant;
 
 @Service
 public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private InventoryRepository inventoryRepository;
+    private BelongingRepository belongingRepository;
 
     @Autowired
     private AttributesRepository attributesRepository;
+
+    @Autowired
+    private EquipmentRepository equipmentRepository;
 
     @Autowired
     UserService(UserRepository userRepository){
@@ -43,14 +50,51 @@ public class UserService {
             attributesRepository.save(attributes);
         }
 
-        if (!inventoryRepository.existsById(id)) {
-            Inventory inventory = new Inventory();
-            inventory.setUser(userRepository.getReferenceById(id));
-            inventoryRepository.save(inventory);
+        if (!equipmentRepository.existsById(id)) {
+            Equipment equipment = new Equipment();
+            equipment.setUser(userRepository.getReferenceById(id));
+            equipmentRepository.save(equipment);
         }
     }
 
     public User getUser(Long id){
         return userRepository.getReferenceById(id);
+    }
+
+
+    public final int AP_TIME_REGEN_SEC = 10;
+    public final int MAX_AP = 3;
+
+    public boolean useAp(User user, int ap){
+        if (getAp(user) >= ap){
+            if (getAp(user) == MAX_AP)
+                user.setFullApTime(Instant.now().plusSeconds(ap * AP_TIME_REGEN_SEC));
+            else
+                user.setFullApTime(user.getFullApTime().plusSeconds(ap * AP_TIME_REGEN_SEC));
+            return true;
+        }
+        return false;
+    }
+
+    public Long getAp(User user){
+        Instant now = Instant.now();
+        Instant userApTime = user.getFullApTime();
+        Duration maxDuration = Duration.ofSeconds(AP_TIME_REGEN_SEC * MAX_AP);
+        Duration timeToMaxAp = Duration.between(now, userApTime);
+        if (timeToMaxAp.isNegative())
+            return Long.valueOf(MAX_AP);
+        else
+            return maxDuration.minus(timeToMaxAp).toSeconds()/AP_TIME_REGEN_SEC;
+    }
+
+    public Long getApInSec(User user){
+        Instant now = Instant.now();
+        Instant userApTime = user.getFullApTime();
+        Duration timeToMaxAp = Duration.between(now, userApTime);
+        return Math.max(timeToMaxAp.toSeconds(), 0);
+    }
+
+    public Long getNextApInSec(User user){
+        return getApInSec(user)%AP_TIME_REGEN_SEC;
     }
 }

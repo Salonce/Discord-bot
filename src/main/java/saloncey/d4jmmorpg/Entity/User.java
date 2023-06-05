@@ -2,9 +2,15 @@ package saloncey.d4jmmorpg.Entity;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
+
 @Entity
 @Table(name="users")
 public class User {
+    public User(){
+        this.fullApTime = Instant.now();
+        this.coins = 0L;
+    }
 
     @Id
     @Column(name = "id")
@@ -16,8 +22,10 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
-    private Inventory inventory;
+    private Equipment equipment;
 
+    private Long coins;
+    private Instant fullApTime;
 
 
     public Long getId() {
@@ -35,11 +43,27 @@ public class User {
         this.attributes = attributes;
     }
 
-    public Inventory getInventory() {
-        return inventory;
+    public Equipment getEquipment() {
+        return equipment;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public Long getCoins() {
+        return coins;
+    }
+
+    public void setCoins(Long coins) {
+        this.coins = coins;
+    }
+
+    public Instant getFullApTime() {
+        return fullApTime;
+    }
+
+    public void setFullApTime(Instant fullApTime) {
+        this.fullApTime = fullApTime;
     }
 }

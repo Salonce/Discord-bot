@@ -5,15 +5,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import saloncey.d4jmmorpg.Messages.Message;
 import saloncey.d4jmmorpg.Messages.MessageCreator;
-import saloncey.d4jmmorpg.Messages.Response.Paint.Painting;
-import saloncey.d4jmmorpg.Messages.Response.Paint.PaintingManager;
+import saloncey.d4jmmorpg.Messages.Paint.PaintingManager;
 import saloncey.d4jmmorpg.Services.AttributesService;
 
 @Component
 public class ResponsePaint implements Response {
 
     @Autowired
-    AttributesService attributesService;
+    private AttributesService attributesService;
 
     @Autowired
     private PaintingManager paintingManager;

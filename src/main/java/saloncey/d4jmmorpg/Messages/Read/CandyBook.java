@@ -1,4 +1,4 @@
-package saloncey.d4jmmorpg.Messages.Response.Read;
+package saloncey.d4jmmorpg.Messages.Read;
 
 import org.springframework.stereotype.Component;
 

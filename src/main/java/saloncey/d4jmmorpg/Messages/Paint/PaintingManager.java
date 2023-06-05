@@ -1,4 +1,4 @@
-package saloncey.d4jmmorpg.Messages.Response.Paint;
+package saloncey.d4jmmorpg.Messages.Paint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

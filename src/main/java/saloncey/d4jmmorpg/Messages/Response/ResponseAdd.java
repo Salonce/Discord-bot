@@ -10,7 +10,7 @@ import saloncey.d4jmmorpg.Services.UserService;
 public class ResponseAdd implements Response {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     public void run(Message message, MessageCreator messageCreator){
             if (message.getContent().equals(".add")) {

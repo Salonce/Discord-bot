@@ -10,21 +10,21 @@ import saloncey.d4jmmorpg.Messages.MessageCreator;
 import saloncey.d4jmmorpg.Services.UserService;
 
 @Component
-public class ResponseAttributes implements Response {
+public class ResponseMe implements Response {
     @Autowired
     private UserService userService;
 
     @Transactional
     public void run(Message message, MessageCreator messageCreator){
-        if (message.getContent().equals(".attributes")) {
+
+
+        if (message.getContent().equals(".me")) {
             User user = userService.getUser(message.getId());
-            Attributes attributes = user.getAttributes();
-            messageCreator.sendMessage("Endurance: " + attributes.getEndurance()
-                    + "\nCharisma: " + attributes.getCharisma()
-                    + "\nIntelligence: " + attributes.getIntelligence()
-                    + "\nWisdom: " + attributes.getWisdom()
-                    + "\nDexterity: " + attributes.getDexterity()
-                    + "\nStrength: " + attributes.getStrength());
+            //String nextAPin = userService.getAp(user).toString();
+            //if (nextAPin.equals("0")) nextAPin = "-"
+            messageCreator.sendMessage("AP: " + userService.getAp(user) + "/" + userService.MAX_AP +
+                    "\nNext AP in: " + userService.getNextApInSec(user) + "s" +
+                    "\nAll AP in: " + userService.getApInSec(user) + "s");
         }
     }
 }

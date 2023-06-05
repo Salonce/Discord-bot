@@ -5,15 +5,18 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Item {
-
-    @Id
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public Item(){}
+    public Item(String id){
         this.id = id;
     }
+
+    @Id
+    private String id;
+    private String name;
+
+    private int itemType;
+    private int value;
+    private int attack;
+    private int defense;
+
 }

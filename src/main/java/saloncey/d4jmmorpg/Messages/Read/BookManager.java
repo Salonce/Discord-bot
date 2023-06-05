@@ -1,4 +1,4 @@
-package saloncey.d4jmmorpg.Messages.Response.Read;
+package saloncey.d4jmmorpg.Messages.Read;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,10 +9,10 @@ import java.util.Random;
 @Component
 public class BookManager {
 
-    Random random = new Random();
+    private Random random = new Random();
 
     @Autowired(required = false)
-    List<Book> bookList;
+    private List<Book> bookList;
 
     public Book getRandom(){
         int number = random.nextInt(bookList.size());

@@ -2,8 +2,8 @@ package saloncey.d4jmmorpg.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import saloncey.d4jmmorpg.Entity.Inventory;
+import saloncey.d4jmmorpg.Entity.Item;
 
 @Repository
-public interface InventoryRepository extends JpaRepository<Inventory, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long> {
 }
