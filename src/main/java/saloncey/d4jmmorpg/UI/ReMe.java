@@ -20,6 +20,7 @@ public class ReMe implements Response {
         if (message.getContent().equals(".me")) {
             User user = userService.getUser(message.getId());
             messageCreator.sendMessage("Coins: " + user.getResources().getCoins() +
+                    "\nPaintings: " + user.getResources().getPaintings() +
                     "\nAP: " + userService.getAp(user) + "/" + userService.MAX_AP +
                     "\nNext AP in: " + userService.getNextApInSec(user) + "s" +
                     "\nAll AP in: " + userService.getApInSec(user) + "s");
