@@ -1,15 +1,14 @@
 package saloncey.d4jmmorpg.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import saloncey.d4jmmorpg.Entity.Attributes;
-import saloncey.d4jmmorpg.Entity.Resources;
-import saloncey.d4jmmorpg.Entity.User;
-import saloncey.d4jmmorpg.Repository.AttributesRepository;
-import saloncey.d4jmmorpg.Repository.ResourcesRepository;
-import saloncey.d4jmmorpg.Repository.UserRepository;
+import saloncey.d4jmmorpg.Entities.Attributes;
+import saloncey.d4jmmorpg.Entities.Resources;
+import saloncey.d4jmmorpg.Entities.User;
+import saloncey.d4jmmorpg.Repositories.AttributesRepository;
+import saloncey.d4jmmorpg.Repositories.ResourcesRepository;
+import saloncey.d4jmmorpg.Repositories.UserRepository;
 
 import java.time.Duration;
 import java.time.Instant;
