@@ -8,7 +8,7 @@ import saloncey.d4jmmorpg.Messages.GameObjects.Selector;
 import saloncey.d4jmmorpg.Messages.Message;
 import saloncey.d4jmmorpg.Messages.MessageCreator;
 import saloncey.d4jmmorpg.Messages.GameObjects.Book;
-import saloncey.d4jmmorpg.Services.AttributesService;
+import saloncey.d4jmmorpg.Services.UserService;
 
 @Component
 public class ResponseRead implements Response {
@@ -19,14 +19,13 @@ public class ResponseRead implements Response {
     @Autowired
     private GameObjects gameObjects;
 
-
     @Autowired
-    private AttributesService attributesService;
+    private UserService userService;
 
     @Transactional
     public void run(Message message, MessageCreator messageCreator){
         if (message.getContent().equals(".library")) {
-            attributesService.getAttributes(message.getId()).increaseWisdom(1L);
+            userService.getUser(message.getId()).getAttributes().increaseWisdom(1L);
             Book book = selector.selectRandomFromAList(gameObjects.getBookList());
             messageCreator.sendMessage(book.getText());
 
