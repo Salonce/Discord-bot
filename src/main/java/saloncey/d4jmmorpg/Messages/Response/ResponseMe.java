@@ -10,6 +10,9 @@ import saloncey.d4jmmorpg.Services.UserService;
 
 @Component
 public class ResponseMe implements Response {
+
+
+
     @Autowired
     private UserService userService;
 
@@ -19,7 +22,7 @@ public class ResponseMe implements Response {
 
         if (message.getContent().equals(".me")) {
             User user = userService.getUser(message.getId());
-            messageCreator.sendMessage("Coins: " + user.getCoins() +
+            messageCreator.sendMessage("Coins: " + user.getResources().getCoins() +
                     "\nAP: " + userService.getAp(user) + "/" + userService.MAX_AP +
                     "\nNext AP in: " + userService.getNextApInSec(user) + "s" +
                     "\nAll AP in: " + userService.getApInSec(user) + "s");

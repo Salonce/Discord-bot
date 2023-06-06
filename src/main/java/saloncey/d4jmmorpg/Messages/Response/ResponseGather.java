@@ -31,7 +31,7 @@ public class ResponseGather implements Response {
             Food food = selector.selectRandomFromAList(gameObjects.getFoodList());
             messageCreator.sendMessage(food.getText() + "\n\n +5 coins.");
 
-            user.addCoins(5L);
+            user.getResources().addCoins(5L);
 
         }
     }

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import saloncey.d4jmmorpg.Entity.Resources;
 
 @Repository
-public interface ItemRepository extends JpaRepository<Resources, Long> {
+public interface ResourcesRepository extends JpaRepository<Resources, Long> {
 }

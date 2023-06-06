@@ -32,7 +32,7 @@ public class ResponsePaint implements Response {
             Painting painting = selector.selectRandomFromAList(gameObjects.getPaintingList());
             messageCreator.sendMessage(painting.getText() + "\n\n You sold your painting for 5 coins.");
 
-            user.addCoins(5L);
+            user.getResources().addCoins(5L);
 
         }
     }

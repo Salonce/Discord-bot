@@ -1,14 +1,14 @@
 package saloncey.d4jmmorpg.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import saloncey.d4jmmorpg.Entity.Attributes;
-import saloncey.d4jmmorpg.Entity.Equipment;
+import saloncey.d4jmmorpg.Entity.Resources;
 import saloncey.d4jmmorpg.Entity.User;
 import saloncey.d4jmmorpg.Repository.AttributesRepository;
-import saloncey.d4jmmorpg.Repository.BelongingRepository;
-import saloncey.d4jmmorpg.Repository.EquipmentRepository;
+import saloncey.d4jmmorpg.Repository.ResourcesRepository;
 import saloncey.d4jmmorpg.Repository.UserRepository;
 
 import java.time.Duration;
@@ -19,13 +19,10 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private BelongingRepository belongingRepository;
+    private ResourcesRepository resourcesRepository;
 
     @Autowired
     private AttributesRepository attributesRepository;
-
-    @Autowired
-    private EquipmentRepository equipmentRepository;
 
     @Autowired
     UserService(UserRepository userRepository){
@@ -50,10 +47,10 @@ public class UserService {
             attributesRepository.save(attributes);
         }
 
-        if (!equipmentRepository.existsById(id)) {
-            Equipment equipment = new Equipment();
-            equipment.setUser(userRepository.getReferenceById(id));
-            equipmentRepository.save(equipment);
+        if (!resourcesRepository.existsById(id)) {
+            Resources resources = new Resources();
+            resources.setUser(userRepository.getReferenceById(id));
+            resourcesRepository.save(resources);
         }
     }
 
