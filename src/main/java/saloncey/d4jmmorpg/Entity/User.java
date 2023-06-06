@@ -59,6 +59,10 @@ public class User {
         this.coins = coins;
     }
 
+    public void addCoins(Long coins) {
+        this.coins += coins;
+    }
+
     public Instant getFullApTime() {
         return fullApTime;
     }

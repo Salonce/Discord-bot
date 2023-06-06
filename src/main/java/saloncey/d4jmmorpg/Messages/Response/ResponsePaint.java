@@ -3,6 +3,7 @@ package saloncey.d4jmmorpg.Messages.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import saloncey.d4jmmorpg.Entity.User;
 import saloncey.d4jmmorpg.Messages.GameObjects.GameObjects;
 import saloncey.d4jmmorpg.Messages.GameObjects.Painting;
 import saloncey.d4jmmorpg.Messages.GameObjects.Selector;
@@ -25,9 +26,14 @@ public class ResponsePaint implements Response {
     @Transactional
     public void run(Message message, MessageCreator messageCreator){
         if (message.getContent().equals(".paint")) {
-            userService.getUser(message.getId()).getAttributes().increaseDexterity(1L);
+            User user = userService.getUser(message.getId());
+
+            user.getAttributes().increaseDexterity(1L);
             Painting painting = selector.selectRandomFromAList(gameObjects.getPaintingList());
-            messageCreator.sendMessage(painting.getText());
+            messageCreator.sendMessage(painting.getText() + "\n\n You sold your painting for 5 coins.");
+
+            user.addCoins(5L);
+
         }
     }
 }

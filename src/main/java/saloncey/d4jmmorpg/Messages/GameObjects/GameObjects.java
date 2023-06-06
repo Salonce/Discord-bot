@@ -17,9 +17,9 @@ public class GameObjects {
         String jsonTravel = jsonReader.readJsonFile("/GameObjects/travel.json");
         String jsonPaintings = jsonReader.readJsonFile("/GameObjects/paintings.json");
         try {
-            this.bookList = jsonConverter.convert(jsonTravel, Book.class);
+            this.bookList = jsonConverter.convert(jsonBooks, Book.class);
             this.journeyList = jsonConverter.convert(jsonTravel, Journey.class);
-            this.paintingList = jsonConverter.convert(jsonTravel, Painting.class);
+            this.paintingList = jsonConverter.convert(jsonPaintings, Painting.class);
 
         } catch (IOException e) {
             e.printStackTrace();
