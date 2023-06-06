@@ -16,16 +16,19 @@ public class GameObjects {
         String jsonBooks = jsonReader.readJsonFile("/GameObjects/books.json");
         String jsonTravel = jsonReader.readJsonFile("/GameObjects/travel.json");
         String jsonPaintings = jsonReader.readJsonFile("/GameObjects/paintings.json");
+        String jsonFood = jsonReader.readJsonFile("/GameObjects/food.json");
         try {
             this.bookList = jsonConverter.convert(jsonBooks, Book.class);
             this.journeyList = jsonConverter.convert(jsonTravel, Journey.class);
             this.paintingList = jsonConverter.convert(jsonPaintings, Painting.class);
+            this.foodList = jsonConverter.convert(jsonFood, Food.class);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private List<Food> foodList;
     private List<Journey> journeyList;
     private List<Book> bookList;
     private List<Painting> paintingList;
@@ -41,4 +44,9 @@ public class GameObjects {
     public List<Painting> getPaintingList() {
         return paintingList;
     }
+
+    public List<Food> getFoodList() {
+        return foodList;
+    }
+
 }
