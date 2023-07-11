@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
+		<version>3.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>saloncey</groupId>
-	<artifactId>d4jmmorpg</artifactId>
+	<groupId>Salonce</groupId>
+	<artifactId>DiscordBot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>d4jmmorpg</name>
-	<description>mmorpg in discord4j</description>
+	<name>DiscordBot</name>
+	<description>Discord bot to process users' messages and respond to them. Its internal structure leverages generics and the observer pattern to provide convenient extensibility. Modifiable to fit one's needs.</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
