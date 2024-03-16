@@ -1,5 +1,7 @@
 package Salonce.DiscordBot;
 
+import Salonce.DiscordBot.Services.Message;
+import Salonce.DiscordBot.Services.MessageHandlerChain;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
@@ -8,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import Salonce.DiscordBot.Services.MessageObserver;
 
 
 @SpringBootApplication
@@ -18,7 +19,7 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Autowired
-	private MessageObserver messageObserver;
+	MessageHandlerChain messageHandlerChain;
 
 	@Value("${discord.bot.token}")
 	private String discordBotToken;
@@ -31,7 +32,10 @@ public class Application implements CommandLineRunner {
 
 
 		gateway.on(MessageCreateEvent.class).subscribe(event -> {
-			messageObserver.setNewMessage(event.getMessage());
+			Message message = new Message();
+			message.setMessage(event.getMessage());
+
+			messageHandlerChain.handle(message);
 		});
 		gateway.onDisconnect().block();
 	}

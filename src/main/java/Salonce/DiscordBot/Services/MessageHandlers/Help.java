@@ -1,17 +1,22 @@
-package Salonce.DiscordBot.UI;
+package Salonce.DiscordBot.Services.MessageHandlers;
 
+import Salonce.DiscordBot.Services.Message;
+import Salonce.DiscordBot.Services.Sender;
+import Salonce.DiscordBot.Services.MessageHandler;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import Salonce.DiscordBot.Services.Message;
-import Salonce.DiscordBot.Services.MessageCreator;
 
+@RequiredArgsConstructor
 @Component
-public class ReHelp implements Response {
+public class Help implements MessageHandler {
+
+    private final Sender sender;
 
     @Transactional
-    public void run(Message message, MessageCreator messageCreator){
+    public boolean handle(Message message){
         if (message.getContent().equals(".help")) {
-            messageCreator.sendMessage("List of available commands: " +
+            sender.sendMessage(message, "List of available commands: " +
                     "\n\nGeneral:" +
                     "\n.add" +
                     "\n.help" +
@@ -22,6 +27,8 @@ public class ReHelp implements Response {
                     "\n.paint" +
                     "\n.travel"
                     );
+            return true;
         }
+        return false;
     }
 }

@@ -4,36 +4,25 @@ import discord4j.core.spec.EmbedCreateSpec;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MessageCreator{
+public class Sender {
 
-    public Message getMessageReceived() {
-        return message;
-    }
-
-    public void setMessageReceived(Message message) {
-        this.message = message;
-    }
-
-    private Message message;
-
-
-    public void sendMessage(EmbedCreateSpec embedMessage) {
+    public void sendMessage(Message message, EmbedCreateSpec embedMessage) {
         message.getChannel().createMessage(embedMessage).block();
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(Message message, String text) {
         EmbedCreateSpec embed = EmbedCreateSpec.builder()
-                .author(this.message.getUserName(), null, this.message.getUserAvatarUrl())
-                .title(message)
+                .author(message.getUserName(), null, message.getUserAvatarUrl())
+                .title(text)
                 .build();
-        sendMessage(embed);
+        sendMessage(message, embed);
     }
-
-    public void sendPlainMessage(String message) {
+/*
+    public void sendPlainMessage(Message message, String text) {
         EmbedCreateSpec embed = EmbedCreateSpec.builder()
-                .addField("\u2800", message, false)
+                .addField("\u2800", text, false)
                 .build();
-        sendMessage(embed);
+        sendMessage(message, embed);
     }
 
     public String addSpaces(String string, int maxWidth) {
@@ -50,6 +39,6 @@ public class MessageCreator{
             stringBuilder.append("\u2800");
         }
         return stringBuilder.toString();
-    }
+    }*/
 
 }

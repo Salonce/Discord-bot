@@ -7,10 +7,10 @@ import java.util.NoSuchElementException;
 
 @Service
 public class Message {
+
     private final Long BOT_ID = 772821811707904022L;
 
-    public boolean setMessage(discord4j.core.object.entity.Message message) {
-        boolean validMessage = false;
+    public void setMessage(discord4j.core.object.entity.Message message) {
 
         try {
             this.id = message.getAuthor().get().getId().asLong();
@@ -20,15 +20,9 @@ public class Message {
             this.userNameId = "<@" + message.getAuthor().get().getId().asString() + ">";
             this.userAvatarUrl = message.getAuthor().get().getAvatarUrl();
 
-            if (!id.equals(BOT_ID)) {
-                validMessage = true;
-            }
-
         } catch (NoSuchElementException noSuchElementException) {
             System.out.println("invalid message");
         }
-        finally {
-            return validMessage;}
     }
 
     private Long id;
