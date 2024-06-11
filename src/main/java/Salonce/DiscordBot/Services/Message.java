@@ -7,9 +7,6 @@ import java.util.NoSuchElementException;
 
 @Service
 public class Message {
-
-    private final Long BOT_ID = 772821811707904022L;
-
     public void setMessage(discord4j.core.object.entity.Message message) {
 
         try {

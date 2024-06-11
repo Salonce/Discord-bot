@@ -14,16 +14,16 @@ import java.util.List;
 public class GameObjects {
 
     @Autowired
-    public GameObjects(JsonManipulator jsonManipulator) throws IOException {
-        String jsonBooks = jsonManipulator.readJsonFile("/GameObjects/books.json");
-        String jsonTravel = jsonManipulator.readJsonFile("/GameObjects/travel.json");
-        String jsonPaintings = jsonManipulator.readJsonFile("/GameObjects/paintings.json");
-        String jsonFood = jsonManipulator.readJsonFile("/GameObjects/food.json");
+    public GameObjects(JsonHandler jsonHandler) throws IOException {
+        String jsonBooks = jsonHandler.readJsonFile("/GameObjects/books.json");
+        String jsonTravel = jsonHandler.readJsonFile("/GameObjects/travel.json");
+        String jsonPaintings = jsonHandler.readJsonFile("/GameObjects/paintings.json");
+        String jsonFood = jsonHandler.readJsonFile("/GameObjects/food.json");
         try {
-            this.bookList = jsonManipulator.convert(jsonBooks, Book.class);
-            this.journeyList = jsonManipulator.convert(jsonTravel, Journey.class);
-            this.paintingList = jsonManipulator.convert(jsonPaintings, Painting.class);
-            this.foodList = jsonManipulator.convert(jsonFood, Food.class);
+            this.bookList = jsonHandler.deserialize(jsonBooks, Book.class);
+            this.journeyList = jsonHandler.deserialize(jsonTravel, Journey.class);
+            this.paintingList = jsonHandler.deserialize(jsonPaintings, Painting.class);
+            this.foodList = jsonHandler.deserialize(jsonFood, Food.class);
 
         } catch (IOException e) {
             e.printStackTrace();

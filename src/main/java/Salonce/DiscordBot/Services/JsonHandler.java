@@ -13,18 +13,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
-public class JsonManipulator {
+public class JsonHandler {
 
     private final ObjectMapper objectMapper;
     private final ResourceLoader resourceLoader;
 
     @Autowired
-    public JsonManipulator(ResourceLoader resourceLoader) {
+    public JsonHandler(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
         this.objectMapper = new ObjectMapper();
     }
 
-    public <T> List<T> convert(String jsonString, Class<T> clazz) throws IOException {
+    public <T> List<T> deserialize(String jsonString, Class<T> clazz) throws IOException {
         JavaType listType = objectMapper.getTypeFactory().constructCollectionType(List.class, clazz);
         return objectMapper.readValue(jsonString, listType);
     }

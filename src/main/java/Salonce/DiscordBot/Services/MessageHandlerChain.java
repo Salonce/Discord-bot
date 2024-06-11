@@ -18,25 +18,4 @@ public class MessageHandlerChain {
 
     @Autowired
     private List<MessageHandler> messageHandlers = new ArrayList<>();
-
-    /*public MessageHandlerChain(){};
-    protected MessageHandlerChain(List<MessageHandler> messageHandlers){
-        this.messageHandlers = messageHandlers;
-    }*/
-    /*public static class Builder{
-        private List<MessageHandler> messageHandlers;
-
-        public Builder(){
-            this.messageHandlers = new ArrayList<>();
-        }
-
-        public Builder addLink(MessageHandler chainLink){
-            messageHandlers.add(chainLink);
-            return this;
-        }
-
-        public MessageHandlerChain build(){
-            return new MessageHandlerChain(this.messageHandlers);
-        }
-    }*/
 }
